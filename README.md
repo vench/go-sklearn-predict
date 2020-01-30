@@ -1,2 +1,9 @@
 # go-sklearn-predict
-Plain library run predict sklearn model
+
+A simple library for executing models from python sklearn to go-lang native.
+
+- [x]  DecisionTreeRegressor
+
+- [x] MLPClassifier DONE
+
+- [ ] MLPRegressor TODO
