@@ -1,7 +1,14 @@
 package go_sklearn_predict
 
+func NewDecisionTreeRegressor(nodes []*TreeNode, values []float64) *DecisionTreeRegressor {
+	p := &DecisionTreeRegressor{nodes,
+		values,
+	}
+	return p
+}
+
 type DecisionTreeRegressor struct {
-	nodes  []*treeNode
+	nodes  []*TreeNode
 	values []float64
 }
 
@@ -35,7 +42,7 @@ func (t *DecisionTreeRegressor) Predict(x []float64) (float64, error) {
 	return 0, ErrorNotFoundNodeResult
 }
 
-type treeNode struct {
+type TreeNode struct {
 	Left      int
 	Right     int
 	Feature   int

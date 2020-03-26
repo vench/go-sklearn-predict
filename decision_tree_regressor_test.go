@@ -4,17 +4,17 @@ import "testing"
 
 func TestTreePredict_Predict(t *testing.T) {
 
-	p := &DecisionTreeRegressor{
-		nodes:  make([]*treeNode, 0),
-		values: make([]float64, 0),
-	}
+	p := NewDecisionTreeRegressor(
+		make([]*TreeNode, 0),
+		make([]float64, 0),
+	)
 
 	if _, err := p.Predict([]float64{}); err != ErrorModelNotLoaded {
 		t.Fatalf(``)
 	}
 
 	p.values = []float64{100}
-	p.nodes = []*treeNode{{-1, -1, -1, 0}}
+	p.nodes = []*TreeNode{{-1, -1, -1, 0}}
 
 	val, err := p.Predict([]float64{0})
 	if err != nil {
@@ -25,21 +25,21 @@ func TestTreePredict_Predict(t *testing.T) {
 	}
 
 	p.values = []float64{}
-	p.nodes = []*treeNode{{-1, -1, -1, 0}}
+	p.nodes = []*TreeNode{{-1, -1, -1, 0}}
 
 	if _, err := p.Predict([]float64{}); err != ErrorNotFoundNodeResult {
 		t.Fatalf(``)
 	}
 
 	p.values = []float64{}
-	p.nodes = []*treeNode{{1, 2, 0, 0}}
+	p.nodes = []*TreeNode{{1, 2, 0, 0}}
 
 	if _, err := p.Predict([]float64{}); err != ErrorNotFoundNodeResult {
 		t.Fatalf(``)
 	}
 
 	p.values = []float64{0, 500, 1000}
-	p.nodes = []*treeNode{
+	p.nodes = []*TreeNode{
 		{1, 2, 0, 60},
 		{-1, -1, 0, 0},
 		{-1, -1, 0, 0},
@@ -62,7 +62,7 @@ func TestTreePredict_Predict(t *testing.T) {
 }
 
 func TestTreePredict_Predict2(t *testing.T) {
-	nodes := []*treeNode{{1, 4, 3, 736936.781250}, {2, 3, 3, 271022.218750}, {-1, -1, -2, -2.000000}, {-1, -1, -2, -2.000000}, {5, 6, 0, 350275.531250}, {-1, -1, -2, -2.000000}, {-1, -1, -2, -2.000000}}
+	nodes := []*TreeNode{{1, 4, 3, 736936.781250}, {2, 3, 3, 271022.218750}, {-1, -1, -2, -2.000000}, {-1, -1, -2, -2.000000}, {5, 6, 0, 350275.531250}, {-1, -1, -2, -2.000000}, {-1, -1, -2, -2.000000}}
 	values := []float64{92532.134603, 26498.711659, 18377.824710, 137515.772113, 950070.180220, 406891.760946, 2043264.541900}
 
 	p := &DecisionTreeRegressor{
